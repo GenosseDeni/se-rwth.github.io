@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  In search of effective design abstractions |
+
+
+
+  SE@RWTH
+
+</title>
+<meta name="description" content="Website of the Chair of Software Engineering at RWTH Aachen
+">
+
+<!-- Google Verification -->
+
+
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+<link rel="icon" type="image/png" href="/assets/img/icons/favicon.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://se-rwth.github.io/sosym/In-search-of-effective-design-abstractions/">
+
+
+
+
+
+    <!-- Matomo -->
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['addDownloadExtensions', "bib"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="https://stats.fh-aachen.de/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '34']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<!-- End Matomo Code -->
+
+  </head>
+
+  <body class=" sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand title font-weight-lighter" href="/">
+        
+          <img src="/assets/img/icons/rwth_se_rgb.png" height="70px">
+        
+        
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <!-- <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li> -->
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Essays
+                    
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/essays/">Essay List</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/essay/Model-Definitions/">Model-Based Definitions</a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/essay/Digital-Twin-Definition/">Digital Twin</a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/essay/Reference-Models/">Reference Models</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/sosym/Explicit-versus-implicit-models/">Explicit versus implicit Models</a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/sosym/Model-engineering/">Model Engineering</a>
+                    
+                    
+                    
+                </div>
+            </li>
+          
+          
+          
+          
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Research
+                    
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/">Research Overview</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/#foundations">MBSE Foundations</a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/#applications">Application Domains</a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/#tools">Software Tools</a>
+                    
+                    
+                    
+                </div>
+            </li>
+          
+          
+          
+          
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Publications
+                    
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/publications/">All Publications</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/books/">Books</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/phdtheses/">Ph.D. Theses</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/assets/bibliography/all-software-engineering-rwth-references.bib">Bibtex</a>
+                    
+                    
+                    
+                </div>
+            </li>
+          
+          
+          
+          
+            
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Projects
+                    
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/projects/">Major project overview</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/projects/22.09.MontiGem.Ford.Press.Release/">MontiGem Ford Press Release</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/MontiCore/">MontiCore</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/research/MontiGem/">MontiGem</a>
+                    
+                    
+                    
+                </div>
+            </li>
+          
+          
+          
+          
+            
+          <li class="nav-item ">
+              <a class="nav-link" href="/jobs/">
+                Jobs
+                
+              </a>
+          </li>
+          
+          
+          
+          
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About us
+                    
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/about/">About us</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/staff/">Staff</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/activities/">Activities</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/teams/">Teams</a>
+                    
+                    
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    
+                    
+                    
+                    <a class="dropdown-item" href="/contact/">Contact &amp; Arrival</a>
+                    
+                    
+                    
+                </div>
+            </li>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">In search of effective design abstractions</h1>
+    <p class="post-description"></p>
+  </header>
+
+  <article>
+    
+
+    <div class="clearfix">
+      <p>(based on <a href="#FR04a">[FR04a]</a>)</p>
+
+<p>The perceived popularity of the modeling languages such as
+the UML may lead some to believe that there is wide-spread
+appreciation of the value of modeling in the software
+development industry. Informal polls in North American trade
+journals seem to indicate otherwise. Use of the UML seems to
+be limited to the use of use cases for requirements and
+class diagrams for graphically representing programs. The
+polls also seem to indicate that awareness of the Object
+Management Group’s Model Driven Architecture (MDA) is not
+widespread. As MDA is currently the most widespread
+model-based development approach this strongly indicates
+that much needs to be done to convince practicing developers
+of the value of model-driven development approaches in
+general. But, we expect to see in 2004 a surge in modeling
+tools in particular those that claim to be “MDA-Compliant”.
+Tool support is essential to realizing the vision of
+model-driven development, but use of tools without a solid
+understanding of the principles and methods they support can
+lead to failed projects and faulty perceptions of
+modeldriven development. In this editorial we reflect on the
+value of the abstraction principle in software development
+and on how modeling approaches can support this principle.</p>
+
+<p>The increasing complexity of evolving large software systems
+has generated a renewed interest in software modeling
+techniques. Inherent software complexity can arise from a
+number of sources, for example, the need to support diverse
+and complex data and computational resources, and diverse
+users with competing needs. Rapidly evolving software
+infrastructure can also contribute to the complexity of
+creating and evolving software systems. For example, IT
+departments are faced with the task of evolving large
+integrated systems to take advantage of new middleware,
+communication or other platform technologies in order to
+maintain or gain competitive advantage. The rapid rate of
+change in these technologies is a source of considerable
+concern: the complexity of the software makes changing the
+software an error-prone and arduous task that takes
+considerable time. Managing software complexity can be
+characterized as a search for the “right” abstractions.
+Developers are seeking good abstractions that can help
+reduce the time and effort needed to create and evolve
+dependable systems.</p>
+
+<p>Past research on design abstractions has produced
+structuring techniques that are based on functional
+abstractions (e.g., Structured Design), data abstractions
+that encapsulate behavior and state of a conceptual entity (
+Object-Oriented development), and service-based abstractions
+in which data and functional elements pertaining to a set of
+provided services are encapsulated in units called
+components (Component-Based development). There are numerous
+publications that describe how these abstractions can be
+used to manage complexity, and there is some quantitative
+context-specific evidence of their effectiveness. Today, the
+rate of change in software platform and system integration
+technologies
+(e.g., middleware technology) is spawning a new generation
+of complex software. For example, the pervasive and open
+nature of the internet present developers of internet-based
+software with challenges that are significantly different
+from those faced by developers of software built for a
+machine on a restricted network. Designers of these new
+systems have to deal with a myriad of complex interdependent
+dependability concerns (e.g., security, availability, error
+recovery, service integrity). Research on model-driven and
+aspect-oriented development can provide the abstraction
+mechanisms needed to manage the complexity of this new breed
+of software. An underlying theme in the discussion is the
+need for design techniques that allow developers to define
+abstractions in many dimensions.</p>
+
+<p>As one of the large and innovative industrial consortia the
+Object Management Group (OMG) has responded to the growing
+complexity of software with an industry-driven initiative
+called Model Driven Architecture (MDA). MDA technologies are
+intended to raise the level of abstraction at which
+developers conceive and implement software. In MDA, software
+models are the primary artifacts of software development.
+The key characteristic of an MDA approach is the use of
+abstractions to separate technology-specific concepts from
+technologyindependent concepts. Technology-independent
+models are composed with technology-specific models (e.g.,
+models that describe middleware and other infrastructural
+elements) to obtain a design model that can be transformed
+to code. Ideally, changing an application to exploit new
+technology would require composing the
+technology-independent model with a new set of
+technology-specific models, and the composition and
+subsequent transformation to deployable code would be
+accomplished in a cost-effective and timely manner. This is
+an appealing view of software development, but accomplishing
+the ideal requires significant advances in modeling theory.
+Furthermore, a sound and elaborated modeling theory would
+allow us to transform, compose and refine models in a much
+more general way than current MDA proposes.</p>
+
+<p>Effective abstraction mechanisms are critical to the success
+of model-driven development. Some of the more widely used
+modeling techniques allow developers to separate concerns to
+manage software complexity. The choice of abstractions
+influences the design structure and can make it easier or
+more difficult to evolve a system. A decision to structure a
+design with respect to a set of design concepts can make it
+necessary to spread information pertaining to set of equally
+important design concepts across design units. The problem
+is that understanding and evolving the latter set of
+concepts is difficult because they are scattered and tangled
+across the design model. Recent work on Aspect-Oriented
+Programming
+(AOP) addresses this problem at the programming level. One
+also needs to support multi-dimensional separation of
+concerns at other stages of development. Work in this area
+has given rise to a field of research labeled AspectOriented
+Modeling (AOM). In an AOM approach, a primary model reflects
+decisions used to determine the core architecture of a
+design, and aspects are localized descriptions of design
+concepts that cannot be encapsulated in the primary design
+structure. Composing a primary model with aspects results in
+a comprehensive design model. Examples of design concepts
+that can be usefully described by aspects are design
+elements that address pervasive security and fault tolerance
+concerns. Aspects can also describe technology-specific
+design concepts, and thus AOM can be used as a vehicle for
+approximating the MDA vision. Treating aspects as patterns (
+e.g., security and middleware design patterns) facilitates
+reuse of aspects.</p>
+
+<p>AOM can also provide support for balancing competing design
+objectives. Security, fault tolerance and other
+dependability and functional objectives often compete with
+each other in the sense that meeting an objective negatively
+impacts the degree that another can be satisfied. In such
+situations, developers should consider alternative ways of
+meeting objectives and make trade-offs in order to balance
+competing objectives. Obtaining a design that “balances” the
+concerns can be challenging using existing design
+techniques. With an AOM approach, the competing design
+concepts can be modeled as aspects to allow developers to
+plug in and unplug alternatives.</p>
+
+<p>In 2004 we expect to see growing interest in the integration
+of aspect-oriented, pattern-based, and modeldriven
+development techniques. The results should provide a good
+foundation for methods and tools that effectively support
+model-driven development of complex software systems.</p>
+
+<h5 id="papers-in-this-issue"><strong><em>Papers in this issue</em></strong></h5>
+
+<p>We are pleased that <em>Cris Cobryn</em> found the time in his very
+busy schedule to publish an Expert Voice paper. The paper,
+<strong>“UML 3.0 and the future of modeling”</strong>, relates the history of
+the UML definition with the future standardization efforts,
+and some open challenges for model-driven development.</p>
+
+<p>In their regular paper <strong>“OCL 1.4/5 vs 2.0 Expressions: Formal
+semantics and expressiveness”</strong> the authors <em>Maria Victoria
+Cengarle and Alexander Knapp</em> present a type system, an
+operational and a denotational semantics for the expression
+sublanguage of the Object Constraint Language. Their results
+demonstrate that the changes introduced in OCL 2.0 restrict
+its expressivity to primitive recursion while OCL 1.4/5 was
+computationally complete. This foundational result shows how
+important it is to carefully design a modeling language to
+avoid expressivity problems that strongly impact practical
+applicability.</p>
+
+<p>The authors <em>Carlos Rossi, Manuel Enciso, and Inmaculada P.
+de Guzman</em> in their paper <strong>“Formalization of UML state
+machines using temporal logic”</strong> use a variant of temporal
+logic that allows the definition of time points, intervals,
+and dates. They demonstrate how to map the most important
+features of Statecharts into the temporal logic variant.</p>
+
+<p>An innovative extension to visual notations is presented in
+the regular paper <strong>“Nesting in Euler Diagrams: syntax,
+semantics and construction”</strong> presented by <em>Jean Flower, John
+Howse, and John Taylor</em>. Nesting of diagrams is supported in
+two popular diagram types: Venn diagrams in set theory and
+Statecharts. In this article the authors provide a general
+foundation to nesting of diagrams and their interpretation
+in the context of visual modeling.</p>
+
+<p>In the final regular paper of this issue <strong>“The OsMoSys
+approach to multi-formalism modeling of systems”</strong> the authors
+<em>Valeria Vittorini, Mauro Iacono, Nicola Mazzocca, and
+Giuliana Franceschinis</em> introduce an approach to building
+models that rely on several formalisms. They relate those
+models at a syntactic level using meta-modeling techniques
+and thus gain interoperability between different notations.</p>
+
+<p>We hope you enjoy reading the articles in this issue.</p>
+
+<p><strong>Robert France, Bernhard Rumpe</strong>
+<strong>Editors in Chief</strong></p>
+
+<p>
+  <img src="/assets/img/icons/balken.jpeg" width="100%" alt="" title="Trennlinie">
+</p>
+
+<p>This essay is essentially taken from a <a href="https://www.sosym.org/" target="_blank" rel="noopener noreferrer">SoSyM</a> editorial,
+which is published under the 
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons licence</a>
+and contains some updates:</p>
+
+<div class="publications">
+  
+  
+    <ol class="bibliography"><li>
+<div class="row">
+  <div id="FR04a" class="col-sm-11">
+    <!-- Entry bib key -->
+    [FR04a]
+    <!-- Author -->
+    <div class="author" style="display: inline">
+      
+        
+        
+          
+          
+            
+              R.
+            
+          
+        
+        
+           France,
+        
+      
+        
+        
+          
+          
+            
+              B.
+            
+          
+        
+        
+           Rumpe:
+        
+      
+
+      
+    </div>
+
+    <!-- Title -->
+    <div class="title">
+<a href="https://www.sosym.org/editorials/files/FR04a.pdf" target="_blank" rel="noopener noreferrer">In search of effective design abstractions</a>.</div>
+    
+    <div class="periodical" style="display: inline">
+      
+        
+          In: Journal Software and Systems Modeling (SoSyM),
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+        
+          Volume 3(1),
+        
+      
+      
+      
+        pp. 1-3,
+      
+      
+      
+      
+        Springer Berlin / Heidelberg,
+      
+      
+      
+      
+        2004.
+      
+      
+    </div>
+
+  </div>
+</div>
+</li></ol>
+  
+</div>
+
+<p>
+  <img src="/assets/img/icons/balken.jpeg" width="100%" alt="" title="Trennlinie">
+</p>
+
+<h4 id="further-links">Further links:</h4>
+
+<ul>
+  <li><a href="/essays">Essays, Comments, Definitions around Modeling</a></li>
+  <li><a href="/publications">Publications</a></li>
+  <li><a href="/research">Topic sorted list of most interesting publications</a></li>
+  <li><a href="/books">Books</a></li>
+  <li><a href="https://www.se-rwth.de" target="_blank" rel="noopener noreferrer">Website of the SE</a></li>
+</ul>
+
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+      <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+let scrollButton = document.getElementById("btn-back-to-top");
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    scrollButton.style.display = "block";
+  } else {
+    scrollButton.style.display = "none";
+  }
+}
+
+scrollButton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+    
+
+  </article>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    <!-- &copy; Copyright 2022   . -->
+    
+    
+    <a href="https://se-rwth.github.io/impressum/">Impressum</a>.
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+
+
+</html>
